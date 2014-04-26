@@ -8,11 +8,12 @@ public class PaperController : MonoBehaviour {
 	public int verse = 0;
 
 
-	private HUDControl hud;
+	private Poem poem;
 	
 	// Use this for initialization
 	void Start () {
-		hud = GameObject.Find("HUD").GetComponent<HUDControl>();
+	
+		poem = GameObject.Find("ScriptHolder").GetComponent<Poem>();
 	}
 	
 	// Update is called once per frame
@@ -23,7 +24,7 @@ public class PaperController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 	
 	
-		hud.attributeScript(hud.createVerseId(stanza, verse));
+		poem.foundScript(stanza, verse);
 		GetComponent<AudioSource>().Play();
 		
 		Destroy(gameObject, GetComponent<AudioSource>().clip.length);

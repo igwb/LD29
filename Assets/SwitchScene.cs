@@ -22,7 +22,7 @@ public class SwitchScene : MonoBehaviour {
 		}
 		
 		if(Input.GetAxis("Action") > 0 && canSwitch) {
-			Application.LoadLevelAdditive(loadThis);
+			Application.LoadLevel(loadThis);
 		}
 	}
 	

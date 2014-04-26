@@ -24,18 +24,21 @@ public class PlayControler : MonoBehaviour {
 	
 	void FixedUpdate() {
 	
-	
-		//Horizontal movement logic
-		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
-		Vector2 newVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed, velocity.y);
-		
-		GetComponent<Rigidbody2D>().velocity = newVelocity;
-	
-	
 		grounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayers);
-	
+		
 		if(Input.GetAxis("Jump") > 0 && grounded) {
+		
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpStrength));
 		}
+	
+	
+		if(grounded) {
+			//Horizontal movement logic
+			Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
+			Vector2 newVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed, velocity.y);
+		
+			GetComponent<Rigidbody2D>().velocity = newVelocity;
+		}
+
 	}
 }

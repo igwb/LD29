@@ -5,15 +5,12 @@ using System.Collections.Generic;
 public class Poem : MonoBehaviour {
 
 	private List<int> scriptsFound = new List<int>();
-	
 	private List<List<string>> stanzas = new List<List<string>>();
-	
-	
-	private Vector2 scrollPosition = new Vector2(0,0);
-	
 	
 	// Use this for initialization
 	void Start () {
+		
+		DontDestroyOnLoad(gameObject);
 		
 		List<string> curScript = new List<string> {
 			"You are",
@@ -92,5 +89,60 @@ public class Poem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	
+	public int getStanzaCount() {
+		
+		return stanzas.Count;
+	}
+	
+	public int getVerseCount(int stanza) {
+		
+		return stanzas[stanza].Count;
+	}
+	
+	public bool hasCollected(int stanza, int verse) {
+	
+		return hasCollected(createScriptId(stanza, verse));
+	}
+	
+	public bool hasCollected(int scriptId) {
+	
+		return scriptsFound.Contains(scriptId);
+	}
+	
+	public int createScriptId(int stanza, int verse) {
+		
+		return (stanza * 100) + verse;
+	}
+	
+	private int getStanzaFromId(int id) {
+		
+		return (id - getVerseFromId(id)) / 100;
+	}
+	
+	private int getVerseFromId(int id) {
+		
+		return id % 100;
+	}
+
+	public string getVerseById(int scriptId) {
+	
+		return getVerse(getStanzaFromId(scriptId), getVerseFromId(scriptId));
+	}
+	
+	public string getVerse(int stanza, int verse) {
+		
+		return stanzas[stanza][verse];
+	}
+	
+	public void foundScript(int stanza, int verse) {
+	
+		foundScript(createScriptId(stanza, verse));
+	}
+	
+	public void foundScript(int scriptId) {
+		
+		scriptsFound.Add(scriptId);
 	}
 }
