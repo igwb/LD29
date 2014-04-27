@@ -23,6 +23,17 @@ public class PlayControler : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
+		
+		if(Input.GetKeyDown(KeyCode.M)) {
+			if(GameObject.Find("ScriptHolder").GetComponent<AudioSource>().isPlaying) {
+			
+				GameObject.Find("ScriptHolder").GetComponent<AudioSource>().Stop(); 
+			} else {
+				GameObject.Find("ScriptHolder").GetComponent<AudioSource>().Play();
+			}
+			
+		}
+	
 	
 		grounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayers);
 		

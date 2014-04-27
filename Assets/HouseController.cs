@@ -11,15 +11,28 @@ public class HouseController : MonoBehaviour {
 	private float currentInterval;
 	private float lastUpdate;
 	private bool updated = false;
-
+	
+	public bool enableLightsOff = false;
+	public int lightsOffScirpt;
+	public Sprite noLight;
+	
+	private Poem poem;
+	
 	// Use this for initialization
 	void Start () {
-	
+		
+		poem = GameObject.Find("ScriptHolder").GetComponent<Poem>();
 		updateSprite();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+		
+		if(enableLightsOff && poem.hasCollected(lightsOffScirpt)) {
+			GetComponent<SpriteRenderer>().sprite = noLight;
+			return;
+		}
 		
 		updated = !(Time.timeSinceLevelLoad - lastUpdate >= currentInterval);
 		

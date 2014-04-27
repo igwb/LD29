@@ -40,14 +40,14 @@ public class Poem : MonoBehaviour {
 		
 		stanzas.Add(curScript);
 		
-		curScript = new List<string> {
+		/*curScript = new List<string> {
 			"What you have seen",
 			"will change.",
 			"When you face",
 			"unknown things."
 		};
 		
-		stanzas.Add(curScript);
+		stanzas.Add(curScript);*/
 		
 		curScript = new List<string> {
 			"Discover others!",
@@ -74,6 +74,8 @@ public class Poem : MonoBehaviour {
 			"what you can't unsee.",
 			"Reality has ceased to be.",
 		};
+		
+		stanzas.Add(curScript);
 		
 		curScript = new List<string> {
 			"Beneath it's surface",
